@@ -60,6 +60,7 @@ void List<T>::insertAtStart(T data) {
         A->data = data;
         head = A;
         tail = A;
+        size++;
 
     }
 
@@ -75,4 +76,3 @@ void List<T>::display() {
     }
 
 }
-
