@@ -39,6 +39,35 @@ private:
 };
 
 template <typename T>
+void List<T>::delteAtPosition(int n) {
+
+    if (n > size || n < 1){
+        throw invalid_argument( "Position does not exist" );
+        return;
+    }
+
+    else if (n == size){
+        deleteLastNode();
+    }
+
+    else if (n == 1){
+        deleteFirstNode();
+    }
+
+    else{
+        Node *temp = head;
+        for (int i = 1; i < n; ++i){
+            temp = temp->next;
+        }
+
+        Node *deleteThis = temp->next;
+        temp->next = deleteThis->next;
+        delete deleteThis;
+        deleteThis = nullptr;
+    }
+}
+
+template <typename T>
 void List<T>::deleteLastNode(){
 
     if (size == 1){
