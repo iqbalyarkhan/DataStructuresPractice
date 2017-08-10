@@ -3,12 +3,15 @@
 
 int main() {
 
-    List<int> *mylist = new List<int>;
-    mylist->insertAtStart(5);
-    mylist->display();
-    mylist->insertAtStart(4);
-    mylist->insertAtStart(3);
-    mylist->display();
+    List<int> *l = new List<int>();
+    l->insertAtStart(5);
+    l->insertAtStart(4);
+    l->insertAtStart(3);
+    l->insertAtStart(2);
+    l->insertAtStart(1);
+    l->display();
+
+
 
     return 0;
 }
