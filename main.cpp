@@ -10,6 +10,7 @@ int main() {
     l->insertAtStart(2);
     l->insertAtStart(1);
     l->display();
+    cout << "Tail points to data: " << l->returnTailData() << endl;
 
 
 

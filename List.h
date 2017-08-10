@@ -24,6 +24,7 @@ public:
     void deleteLastNode();
     void delteAtPosition();
     T count();
+    T returnTailData();
 
 
 private:
@@ -37,7 +38,7 @@ private:
     int size;
 };
 
-#endif //LINKEDLISTCLASS_LIST_H
+
 
 template <typename T>
 List<T>::List(){
@@ -60,6 +61,17 @@ void List<T>::insertAtStart(T data) {
         A->data = data;
         head = A;
         tail = A;
+        A->next = nullptr;
+        size++;
+
+    }
+
+    else{
+
+        Node *temp = new Node;
+        temp->data = data;
+        temp->next = head;
+        head = temp;
         size++;
 
     }
@@ -76,3 +88,12 @@ void List<T>::display() {
     }
 
 }
+
+template<typename T>
+T List<T>::returnTailData() {
+
+    return tail->data;
+
+}
+
+#endif //LINKEDLISTCLASS_LIST_H
