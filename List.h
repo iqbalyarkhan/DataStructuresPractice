@@ -38,7 +38,28 @@ private:
     int size;
 };
 
+template <typename T>
+void List<T>::deleteFirstNode(){
 
+    if (size > 1){
+
+        Node *temp = head;
+        temp = head->next;
+        delete head;
+        head = temp;
+        size--;
+    }
+
+    else{
+
+        delete head;
+        head = nullptr;
+        tail = nullptr;
+        size--;
+
+    }
+
+}
 
 template <typename T>
 List<T>::List(){

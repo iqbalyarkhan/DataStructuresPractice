@@ -11,7 +11,11 @@ int main() {
     l->insertAtStart(1);
     l->display();
     cout << "Tail points to data: " << l->returnTailData() << endl;
-
+    l->insertAtEnd(6);
+    cout << "Tail points to data: " << l->returnTailData() << endl;
+    cout << "Deleting first node: " << endl;
+    l->deleteFirstNode();
+    l->display();
 
 
     return 0;
