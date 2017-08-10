@@ -3,9 +3,12 @@
 
 int main() {
 
-    List<int> mylist;
-    mylist.insertAtStart(5);
-    mylist.display();
+    List<int> *mylist = new List<int>;
+    mylist->insertAtStart(5);
+    mylist->display();
+    mylist->insertAtStart(4);
+    mylist->insertAtStart(3);
+    mylist->display();
 
     return 0;
 }
