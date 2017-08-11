@@ -17,13 +17,14 @@ class List {
 
 public:
     List();
-    void insertAtEnd();
-    void insertAtStart(T);
+    void insertAtEnd(T d);
+    void insertAtStart(T d);
+    void insertAtPosition(int n, T data);
     void display();
     void deleteFirstNode();
     void deleteLastNode();
-    void delteAtPosition();
-    T count();
+    void deleteAtPosition(int n);
+    int count();
     T returnTailData();
 
 
@@ -39,7 +40,33 @@ private:
 };
 
 template <typename T>
-void List<T>::delteAtPosition(int n) {
+void List<T>::insertAtPosition(int n, T data) {
+    if (n == 0){
+        insertAtStart(data);
+    }
+
+    else if (n == size){
+        insertAtEnd(data);
+    }
+
+    else{
+        Node *newNode = new Node;
+        newNode->data = data;
+        Node *temp = head;
+        for (int i = 1; i < n; ++i){
+            temp = temp->next;
+        }
+
+        newNode->next = temp->next;
+        temp->next = newNode;
+        size++;
+
+    }
+}
+
+
+template <typename T>
+void List<T>::deleteAtPosition(int n) {
 
     if (n > size || n < 1){
         throw invalid_argument( "Position does not exist" );
@@ -48,10 +75,12 @@ void List<T>::delteAtPosition(int n) {
 
     else if (n == size){
         deleteLastNode();
+        size--;
     }
 
     else if (n == 1){
         deleteFirstNode();
+        size--;
     }
 
     else{
@@ -64,7 +93,10 @@ void List<T>::delteAtPosition(int n) {
         temp->next = deleteThis->next;
         delete deleteThis;
         deleteThis = nullptr;
+        size--;
+
     }
+
 }
 
 template <typename T>
@@ -84,11 +116,13 @@ void List<T>::deleteLastNode(){
 
         }
 
-        Node *oldTail = tail;
         temp1->next = tail->next;
-        delete oldTail;
+        delete tail;
         tail = temp1;
+        size--;
+
     }
+
 }
 
 template <typename T>
@@ -112,7 +146,23 @@ void List<T>::deleteFirstNode(){
 
     }
 
+
+
+
 }
+
+template <typename T>
+void List<T>::insertAtEnd(T d) {
+
+    Node *temp = new Node;
+    temp->next = nullptr;
+    temp->data = d;
+    tail->next = temp;
+    tail = temp;
+    size++;
+
+}
+
 
 template <typename T>
 List<T>::List(){
@@ -122,17 +172,17 @@ List<T>::List(){
 }
 
 template <typename T>
-T List<T>::count(){
+int List<T>::count(){
     return size;
 }
 
 template <typename T>
-void List<T>::insertAtStart(T data) {
+void List<T>::insertAtStart(T d) {
 
     if (size == 0){
 
         Node *A = new Node;
-        A->data = data;
+        A->data = d;
         head = A;
         tail = A;
         A->next = nullptr;
@@ -143,7 +193,7 @@ void List<T>::insertAtStart(T data) {
     else{
 
         Node *temp = new Node;
-        temp->data = data;
+        temp->data = d;
         temp->next = head;
         head = temp;
         size++;
