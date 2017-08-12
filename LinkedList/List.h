@@ -40,6 +40,27 @@ private:
 };
 
 /*
+ * CCI get K element from end
+ * */
+
+/// Function to return Kth element from the of list
+/// @param k: the position of the element to return
+/// @return : the data present at position k.
+
+template <typename T>
+T List<T>::getKElementFromEnd(int k) {
+
+    int target = size - k;
+    Node *temp = head;
+    for (size_t i = 0; i < target; ++i){
+        temp = temp->next;
+    }
+
+    return temp->data;
+
+}
+
+/*
 CCI linked list problem: remove duplicates
 from the linked list without using a buffer
 */
@@ -80,6 +101,12 @@ void List<T>::removeDuplicates(){
     }
 
 }
+
+///
+///  Function that inserts data at position n
+/// @param n : Position to insert in
+/// @param data : Data to be inserted
+
 
 template <typename T>
 void List<T>::insertAtPosition(int n, T data) {
