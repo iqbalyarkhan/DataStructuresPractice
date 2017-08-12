@@ -39,6 +39,11 @@ private:
     int size;
 };
 
+/*
+CCI linked list problem: remove duplicates
+from the linked list without using a buffer
+*/
+
 template <typename T>
 void List<T>::removeDuplicates(){
 
