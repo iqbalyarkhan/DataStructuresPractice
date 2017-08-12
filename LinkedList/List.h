@@ -40,6 +40,43 @@ private:
 };
 
 template <typename T>
+void List<T>::removeDuplicates(){
+
+    //Set to hold current values
+    set<T> currSet;
+
+    //Pair to check if value
+    // already exists in set
+    pair<typename set<T>::iterator, bool> ret;
+
+    Node *curr = head->next;
+    Node *prev = head;
+    currSet.insert(prev->data);
+    while (curr != nullptr){
+
+        ret = currSet.insert(curr->data);
+
+        //If a duplicate is found
+        if (!ret.second){
+
+            prev->next = curr->next;
+            delete curr;
+            curr = nullptr;
+            curr = prev->next;
+
+        }
+        //If no duplicate found
+        else{
+            //Move ahead
+            curr = curr->next;
+            prev = prev->next;
+        }
+
+    }
+
+}
+
+template <typename T>
 void List<T>::insertAtPosition(int n, T data) {
     if (n == 0){
         insertAtStart(data);
