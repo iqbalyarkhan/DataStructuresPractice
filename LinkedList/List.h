@@ -39,6 +39,37 @@ private:
     int size;
 };
 
+/// Function to print the data of the node in the list
+/// that is problem node in a circular list.
+/// @tparam T
+/// @return
+
+template <typename T>
+void List<T>::detectCircularPoint() {
+
+    set<T> currSet;
+    pair<typename set<T>::iterator, bool> ret;
+
+    Node *curr = head;
+
+    while (curr != nullptr){
+
+        T currData = curr->data;
+        ret = currSet.insert(currData);
+        if (!ret.second){
+            cout <<"Circular node is with data: " << curr->data << endl;
+            break;
+        }
+        else{
+
+            curr = curr->next;
+
+        }
+
+    }
+
+}
+
 /*
  * CCI get K element from end
  * */
