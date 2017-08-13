@@ -26,8 +26,8 @@ public:
     void deleteAtPosition(int n);
     int count();
     T returnTailData();
-
-
+    bool isPalindrome();
+    
 private:
     struct Node{
         Node *next;
@@ -38,6 +38,65 @@ private:
     Node *head;
     int size;
 };
+
+///Function to return whether a list is a palindrome
+
+template <typename T>
+bool List<T>::isPalindrome() {
+
+    bool isPalindrome = true;
+    stack<T> myStack;
+    //To check the size of the list
+    int remainder = size % 2;
+
+    //Assuming that if the size is <= 1, it is a plaindrome
+    if(size <= 1){
+        return isPalindrome;
+    }
+
+    else{
+        //Starting at head
+        Node *curr = head;
+
+        //Push half the list on to the stack
+        for (int i = 0 ; i < (size/2); ++i){
+            myStack.push(curr->data);
+            curr = curr->next;
+        }
+
+        //If the size of the list was odd,
+        if (remainder != 0){
+
+            //skip the middle element
+            curr = curr->next;
+        }
+
+        //While end of list is not reached
+        while(curr != nullptr){
+            //Start popping items from the stack
+            T dataOnStack = myStack.top();
+            myStack.pop();
+
+            //And compare with the item on the list
+            if (curr->data != dataOnStack){
+
+                //If item on list and stack do not match,
+                //the list wasn't a palindrome.
+                isPalindrome = false;
+                return isPalindrome;
+
+            }
+
+            else{
+                curr = curr->next;
+            }
+
+        }
+
+    }
+
+    return isPalindrome;
+}
 
 /// Function to print the data of the node in the list
 /// that is problem node in a circular list.
