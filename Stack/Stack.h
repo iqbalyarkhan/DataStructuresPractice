@@ -1,5 +1,9 @@
 //
+<<<<<<< HEAD
 // Created by Iqbal Khan on 8/13/17.
+=======
+// Created by Iqbal Khan on 8/14/17.
+>>>>>>> stack
 //
 
 #ifndef STACKCLASS_STACK_H
@@ -21,6 +25,11 @@ public:
     bool isEmpty();
     int count();
     void print();
+<<<<<<< HEAD
+=======
+    T getMin();
+    void setMin(T data);
+>>>>>>> stack
 
 private:
     struct Node{
@@ -30,6 +39,10 @@ private:
 
     Node *head;
     int size;
+<<<<<<< HEAD
+=======
+    int min;
+>>>>>>> stack
 
 };
 
@@ -46,6 +59,24 @@ void Stack<T>::print() {
 }
 
 template <typename T>
+<<<<<<< HEAD
+=======
+void Stack<T>::setMin(T data) {
+
+    if (data < min){
+        min = data;
+    }
+
+}
+
+template <typename T>
+T Stack<T>::getMin() {
+
+    return min;
+}
+
+template <typename T>
+>>>>>>> stack
 int Stack<T>::count() {
     return size;
 }
@@ -90,12 +121,20 @@ void Stack<T>::push(T data) {
     Node *temp = new Node;
     temp->data = data;
     if (size == 0){
+<<<<<<< HEAD
+=======
+        min = data;
+>>>>>>> stack
         temp->next = nullptr;
         head = temp;
     }
 
     else{
 
+<<<<<<< HEAD
+=======
+        setMin(data);
+>>>>>>> stack
         temp->next = head;
         head = temp;
     }
