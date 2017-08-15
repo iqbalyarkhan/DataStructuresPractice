@@ -1,5 +1,5 @@
 //
-// Created by Iqbal Khan on 8/13/17.
+// Created by Iqbal Khan on 8/14/17.
 //
 
 #ifndef STACKCLASS_STACK_H
@@ -21,6 +21,8 @@ public:
     bool isEmpty();
     int count();
     void print();
+    T getMin();
+    void setMin(T data);
 
 private:
     struct Node{
@@ -30,6 +32,7 @@ private:
 
     Node *head;
     int size;
+    int min;
 
 };
 
@@ -43,6 +46,21 @@ void Stack<T>::print() {
 
     cout << endl;
 
+}
+
+template <typename T>
+void Stack<T>::setMin(T data) {
+
+    if (data < min){
+        min = data;
+    }
+
+}
+
+template <typename T>
+T Stack<T>::getMin() {
+
+    return min;
 }
 
 template <typename T>
@@ -90,12 +108,14 @@ void Stack<T>::push(T data) {
     Node *temp = new Node;
     temp->data = data;
     if (size == 0){
+        min = data;
         temp->next = nullptr;
         head = temp;
     }
 
     else{
 
+        setMin(data);
         temp->next = head;
         head = temp;
     }
