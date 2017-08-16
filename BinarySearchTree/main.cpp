@@ -15,6 +15,8 @@ int main() {
     bst->insert(5);
     bst->insert(2);
 
+    bst->insertWithoutRecursion(16);
+
     //bst->print();
     cout << "Pre order: " << endl;
     bst->printPreOrder();

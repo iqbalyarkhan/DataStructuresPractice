@@ -68,10 +68,66 @@ public:
         printPostOrder(root);
     }
 
+    //Insert without recursion method that calls
+    //private method with root and data
+    void insertWithoutRecursion(T data){
+
+        insertWithoutRecursion(root,data);
+
+    }
+
 private:
 
     //root to hold entry point for the tree
     Node<T> *root;
+
+    //Insert method witout using recursion
+    void insertWithoutRecursion(Node<T> *curr, T data){
+
+        Node<T> *temp = new Node<T>(data);
+
+        if (curr == nullptr){
+            root = temp;
+
+        }
+
+        else{
+
+            Node<T> *parent = nullptr;
+
+            while (curr != nullptr){
+
+                parent = curr;
+
+                if (data < curr->data ){
+                    curr = curr->leftChild;
+                }
+
+                else if (data > curr->data){
+
+                    curr = curr->rightChild;
+                }
+
+                else{
+                    //duplicate, do nothing
+                }
+
+            }
+
+            if (data < parent->data ){
+
+                parent->leftChild = temp;
+
+            }
+
+            else{
+
+                parent->rightChild = temp;
+            }
+
+        }
+    }
+
 
     //prints tree in Order
     void printInOrder(Node<T> *curr){
