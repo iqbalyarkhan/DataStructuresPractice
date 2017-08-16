@@ -51,10 +51,69 @@ public:
         print(root);
     }
 
+    /*Various print methods:*/
+
+    //pre
+    void printPreOrder(){
+        printPreOrder(root);
+    }
+
+    //in
+    void printInOrder(){
+        printInOrder(root);
+    }
+
+    //post
+    void printPostOrder(){
+        printPostOrder(root);
+    }
+
 private:
 
     //root to hold entry point for the tree
     Node<T> *root;
+
+    //prints tree in Order
+    void printInOrder(Node<T> *curr){
+
+        if (curr == nullptr){
+            return;
+        }
+
+        printInOrder(curr->leftChild);
+        cout << curr->data << endl;
+        printInOrder(curr->rightChild);
+
+
+    }
+
+    //prints tree in post order
+    void printPostOrder(Node<T> *curr){
+
+        if (curr == nullptr){
+            return;
+        }
+
+        printPostOrder(curr->leftChild);
+        printPostOrder(curr->rightChild);
+        cout << curr->data << endl;
+
+
+    }
+
+    //prints tree in preOrder
+    void printPreOrder(Node<T> *curr){
+
+        if (curr == nullptr){
+            return;
+        }
+        cout << curr->data << endl;
+        printPreOrder(curr->leftChild);
+        printPreOrder(curr->rightChild);
+
+
+
+    }
 
     //Prints tree in sorted order
     //curr: root node
