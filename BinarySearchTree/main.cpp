@@ -2,8 +2,6 @@
 #include <stdio.h>
 #include "Bst.h"
 
-/*http://math.hws.edu/eck/cs225/s03/binary_trees/SortTreeDemo.cc.txt*/
-
 using namespace std;
 
 int main() {
