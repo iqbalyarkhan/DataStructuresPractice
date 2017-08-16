@@ -2,13 +2,15 @@
 // Created by Iqbal Khan on 8/9/17.
 //
 
-#ifndef LINKEDLISTCLASS_LIST_H
-#define LINKEDLISTCLASS_LIST_H
+#ifndef LINKEDLISTS_LIST_H
+#define LINKEDLISTS_LIST_H
 
 #include <utility>
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include <stack>
+#include <set>
 
 using namespace std;
 
@@ -27,7 +29,11 @@ public:
     int count();
     T returnTailData();
     bool isPalindrome();
-    
+    void detectCircularPoint();
+    T getKElementFromEnd(int );
+    void removeDuplicates();
+
+
 private:
     struct Node{
         Node *next;
@@ -181,7 +187,7 @@ void List<T>::removeDuplicates(){
             curr = prev->next;
 
         }
-        //If no duplicate found
+            //If no duplicate found
         else{
             //Move ahead
             curr = curr->next;
@@ -379,4 +385,4 @@ T List<T>::returnTailData() {
 
 }
 
-#endif //LINKEDLISTCLASS_LIST_H
+#endif //LINKEDLISTS_LIST_H
