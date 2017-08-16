@@ -36,6 +36,33 @@ public:
 
     }
 
+    void insertWithoutRecursion(T data){
+
+        insertWithoutRecursion(root,data);
+
+    }
+
+    //Calling private delete method with root
+    //and data to be deleted
+    /*void deleteNode(T data){
+
+        delete(root,data);
+
+    }*/
+
+    //function to search whether data exists in tree
+    bool search(T data){
+
+        bool found = search(root, data);
+        return found;
+
+    }
+
+    bool searchWithoutRecursion(T data){
+        bool found = searchWithoutRecursion(root, data);
+        return found;
+    }
+
     //Calling private insert method with root
     //and data to be inserted
     //data: data for new node
@@ -68,18 +95,39 @@ public:
         printPostOrder(root);
     }
 
-    //Insert without recursion method that calls
-    //private method with root and data
-    void insertWithoutRecursion(T data){
-
-        insertWithoutRecursion(root,data);
-
-    }
-
 private:
 
     //root to hold entry point for the tree
     Node<T> *root;
+
+    //Search method without recursion
+    bool searchWithoutRecursion(Node<T> *curr, T data){
+
+        if (curr == nullptr){
+            return false;
+        }
+
+        while (curr != nullptr ){
+
+            if (data < curr->data){
+                curr = curr->leftChild;
+            }
+
+            else if (data == curr->data){
+
+                return true;
+            }
+
+            else{
+
+                curr = curr->rightChild;
+            }
+
+        }
+
+        return false;
+
+    }
 
     //Insert method witout using recursion
     void insertWithoutRecursion(Node<T> *curr, T data){
@@ -128,6 +176,28 @@ private:
         }
     }
 
+    //Search with recursion
+    bool search(Node<T>*curr, T data){
+
+        if (curr == nullptr){
+            return false;
+        }
+
+        if (curr->data == data){
+            return true;
+        }
+
+        else if(data < curr->data){
+            return search(curr->leftChild,data);
+        }
+
+        else {
+
+            return search(curr->rightChild,data);
+
+        }
+
+    }
 
     //prints tree in Order
     void printInOrder(Node<T> *curr){
