@@ -31,8 +31,9 @@ int main() {
     bst->printPostOrder();
     cout << endl;
 
-    cout << "Is 10 in the tree?: " << bst->search(10) << endl;
-    cout << "Is 14 in the tree?: " << bst->searchWithoutRecursion(14) << endl;
+    cout << "min is: " << bst->findMin() << endl;
+    cout << "max is: " << bst->findMax() << endl;
+
 
     return 0;
 }

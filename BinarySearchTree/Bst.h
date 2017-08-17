@@ -35,6 +35,27 @@ public:
         root = nullptr;
 
     }
+    
+    T findMinRecursively(){
+        T min = findMinRecursively(root);
+        return min;
+    }
+
+    T findMaxRecursively(){
+        T max = findMaxRecursively(root);
+        return max;
+    }
+
+    T findMin(){
+        T min = findMin(root);
+        return min;
+    }
+
+
+    T findMax(){
+        T max = findMax(root);
+        return max;
+    }
 
     void insertWithoutRecursion(T data){
 
@@ -42,14 +63,7 @@ public:
 
     }
 
-    //Calling private delete method with root
-    //and data to be deleted
-    /*void deleteNode(T data){
-
-        delete(root,data);
-
-    }*/
-
+    
     //function to search whether data exists in tree
     bool search(T data){
 
@@ -99,6 +113,54 @@ private:
 
     //root to hold entry point for the tree
     Node<T> *root;
+
+
+     T findMinRecursively(Node<T>* curr){
+
+        if (curr->leftChild == nullptr){
+            return curr->data;
+        }
+
+        findMinRecursively(curr->leftChild);
+
+    }
+
+    T findMaxRecursively(Node<T>* curr){
+
+        if (curr->rightChild == nullptr){
+            return curr->data;
+        }
+
+        findMaxRecursively(curr->rightChild);
+
+    }
+
+    T findMin(Node<T> *curr){
+
+        while (curr->leftChild != nullptr){
+            curr = curr->leftChild;
+            T currData = curr->data;
+            int dummy = 0;
+        }
+
+        return curr->data;
+
+    }
+
+    T findMax(Node<T> *curr){
+
+        while (curr->rightChild != nullptr){
+
+            curr = curr->rightChild;
+            T currData = curr->data;
+            int dummy = 0;
+        }
+
+        return curr->data;
+
+    }
+    
+
 
     //Search method without recursion
     bool searchWithoutRecursion(Node<T> *curr, T data){
