@@ -34,6 +34,8 @@ int main() {
     cout << "min is: " << bst->findMin() << endl;
     cout << "max is: " << bst->findMax() << endl;
 
+    cout << “Height is: “ << bst->findHeight() << endl;
+
 
     return 0;
 }
