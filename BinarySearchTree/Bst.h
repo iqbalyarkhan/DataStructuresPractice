@@ -36,6 +36,12 @@ public:
 
     }
     
+    int findHeight(){
+        int height = findHeight(root);
+        return height;
+    }
+
+
     T findMinRecursively(){
         T min = findMinRecursively(root);
         return min;
@@ -113,6 +119,33 @@ private:
 
     //root to hold entry point for the tree
     Node<T> *root;
+
+    //Height = number of edges between the node and the root.
+    int findHeight(Node<T> *curr){
+
+        //Base case where the height of an empty tree is -1
+        if (curr == nullptr){
+
+            return -1;
+        }
+
+        int leftHeight = findHeight(curr->leftChild);
+        int rightHeight = findHeight(curr->rightChild);
+
+        if (leftHeight > rightHeight){
+
+            int totalHeight = leftHeight;
+            return (totalHeight + 1);
+        }
+
+        else{
+
+            int totalHeight = rightHeight;
+            return (totalHeight + 1);
+        }
+
+
+    }
 
 
      T findMinRecursively(Node<T>* curr){
