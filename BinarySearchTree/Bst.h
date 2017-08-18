@@ -8,6 +8,7 @@
 #include <iostream>
 #include <stdio.h>
 #include <string>
+#include <queue>
 
 using namespace std;
 
@@ -19,7 +20,7 @@ struct Node{
     Node *leftChild;
     Node *rightChild;
 
-    //Constructior
+    //Constructor
     Node (T d) : data(d), leftChild(nullptr), rightChild(nullptr){}
 
 };
@@ -35,42 +36,86 @@ public:
         root = nullptr;
 
     }
-    
+
+
+    /**
+     * Helper function that calls private function
+     * to traverse the tree breadth first
+     */
+
+    void breadthFirstTraversal(){
+        queue<T> unVisited;
+        breadthFirstTraversal(root);
+
+    }
+
+    /**
+     * Helper function to call private function
+     * @return height of the tree
+     */
     int findHeight(){
         int height = findHeight(root);
         return height;
     }
 
-
-    T findMinRecursively(){
-        T min = findMinRecursively(root);
-        return min;
-    }
-
-    T findMaxRecursively(){
-        T max = findMaxRecursively(root);
-        return max;
-    }
-
-    T findMin(){
-        T min = findMin(root);
-        return min;
-    }
-
-
-    T findMax(){
-        T max = findMax(root);
-        return max;
-    }
-
+    /**
+     * Helper function that calls private function to insert
+     * data in tree without using recursion
+     * @param data to be inserted
+     *
+     */
     void insertWithoutRecursion(T data){
 
         insertWithoutRecursion(root,data);
 
     }
 
-    
-    //function to search whether data exists in tree
+    /**
+     * Helper function that calls private function to find minimum
+     * value in the tree using recursion
+     * @return minimum value in the tree
+     */
+    T findMinRecursively(){
+        T min = findMinRecursively(root);
+        return min;
+    }
+
+    /**
+    * Helper function that calls private function to find maximum
+    * value in the tree using recursion
+    * @return maximum value in the tree
+    */
+    T findMaxRecursively(){
+        T max = findMaxRecursively(root);
+        return max;
+    }
+
+    /**
+     * Helper function that calls private function to find minimum
+     * value in the tree iteratively
+     * @return minimum value in the tree
+     */
+    T findMin(){
+        T min = findMin(root);
+        return min;
+    }
+
+    /**
+    * Helper function that calls private function to find maximum
+    * value in the tree iteratively
+    * @return minimum value in the tree
+    */
+    T findMax(){
+        T max = findMax(root);
+        return max;
+    }
+
+    /**
+    * Helper function that calls private function to find
+    * value in the tree recursively
+    *@param data to find
+    *@return true if value found, false otherwise
+    */
     bool search(T data){
 
         bool found = search(root, data);
@@ -78,21 +123,31 @@ public:
 
     }
 
+    /**
+   * Helper function that calls private function to find
+   * value in the tree recursively
+   *@param data to find
+   *@return true if value found, false otherwise
+   */
     bool searchWithoutRecursion(T data){
         bool found = searchWithoutRecursion(root, data);
         return found;
     }
 
-    //Calling private insert method with root
-    //and data to be inserted
-    //data: data for new node
+    /**
+   * Helper function that calls private function to insert
+   * value in the tree
+   *@param data to insert
+   */
     void insert(T data){
 
         insert(root,data);
 
     }
 
-    //Calling private print method
+    /**
+   * Helper function that calls private function to print the tree
+   */
     void print(){
 
         print(root);
@@ -100,17 +155,26 @@ public:
 
     /*Various print methods:*/
 
-    //pre
+    /**
+   * Helper function that calls private function to print tree
+   * in pre-order
+   */
     void printPreOrder(){
         printPreOrder(root);
     }
 
-    //in
+    /**
+   * Helper function that calls private function to print tree
+   * in order
+   */
     void printInOrder(){
         printInOrder(root);
     }
 
-    //post
+    /**
+   * Helper function that calls private function to print tree
+   * in post-order
+   */
     void printPostOrder(){
         printPostOrder(root);
     }
@@ -120,7 +184,48 @@ private:
     //root to hold entry point for the tree
     Node<T> *root;
 
-    //Height = number of edges between the node and the root.
+    /**
+     * Traverses the in breadthFirst fashion,
+     * printing out the values
+     * @param root of the tree
+     */
+    void breadthFirstTraversal(Node<T>*root){
+
+        if (root == nullptr){
+            return;
+        }
+
+        queue<Node<T>*> q;
+        q.push(root);
+        while (!q.empty()){
+
+
+            Node<T> *curr = q.front();
+            cout << curr->data << " ";
+
+            if (curr->leftChild != nullptr){
+
+                q.push(curr->leftChild);
+            }
+
+            if (curr->rightChild != nullptr){
+
+                q.push(curr->rightChild);
+            }
+
+            q.pop();
+
+        }
+
+
+
+    }
+
+    /**
+     * Function to find the height of the tree
+     * @param curr - root of the tree
+     * @return height of the tree
+     */
     int findHeight(Node<T> *curr){
 
         //Base case where the height of an empty tree is -1
@@ -147,8 +252,13 @@ private:
 
     }
 
-
-     T findMinRecursively(Node<T>* curr){
+    /**
+     * Function to find the minimum value present in the tree
+     * using recursive approach
+     * @param curr - root of the tree
+     * @return minimum value in the tree
+     */
+    T findMinRecursively(Node<T>* curr){
 
         if (curr->leftChild == nullptr){
             return curr->data;
@@ -158,6 +268,12 @@ private:
 
     }
 
+    /**
+     * Function to find the max value present in
+     * the tree using recursive approach
+     * @param curr - root of the tree
+     * @return maximum value in the tree
+     */
     T findMaxRecursively(Node<T>* curr){
 
         if (curr->rightChild == nullptr){
@@ -168,6 +284,12 @@ private:
 
     }
 
+    /**
+     * Function to find minimum value in the tree using
+     * iterative approach
+     * @param curr - root of the tree
+     * @return minimum value in the tree
+     */
     T findMin(Node<T> *curr){
 
         while (curr->leftChild != nullptr){
@@ -180,6 +302,12 @@ private:
 
     }
 
+    /**
+     * Function to find the maximum value in the tree
+     * using iterative approach
+     * @param curr - root of the tree
+     * @return maximum value in the tree
+     */
     T findMax(Node<T> *curr){
 
         while (curr->rightChild != nullptr){
@@ -192,8 +320,6 @@ private:
         return curr->data;
 
     }
-    
-
 
     //Search method without recursion
     bool searchWithoutRecursion(Node<T> *curr, T data){
@@ -224,7 +350,11 @@ private:
 
     }
 
-    //Insert method witout using recursion
+    /**
+     * Function to insert data in the tree iteratively
+     * @param curr - root of the tree
+     * @param data - data to be inserted
+     */
     void insertWithoutRecursion(Node<T> *curr, T data){
 
         Node<T> *temp = new Node<T>(data);
@@ -271,7 +401,12 @@ private:
         }
     }
 
-    //Search with recursion
+    /**
+     * Function to search for data recursively
+     * @param curr - root of the tree
+     * @param data - data to search for
+     * @return true if data found, false otherwise
+     */
     bool search(Node<T>*curr, T data){
 
         if (curr == nullptr){
@@ -294,7 +429,10 @@ private:
 
     }
 
-    //prints tree in Order
+    /**
+     * Function to print tree in order
+     * @param curr - root of the tree
+     */
     void printInOrder(Node<T> *curr){
 
         if (curr == nullptr){
@@ -308,7 +446,11 @@ private:
 
     }
 
-    //prints tree in post order
+
+    /**
+     * Function to print tree in post-order
+     * @param curr - root of the tree
+     */
     void printPostOrder(Node<T> *curr){
 
         if (curr == nullptr){
@@ -322,7 +464,10 @@ private:
 
     }
 
-    //prints tree in preOrder
+    /**
+     * Function to print tree in pre-order
+     * @param curr - root of the tree
+     */
     void printPreOrder(Node<T> *curr){
 
         if (curr == nullptr){
@@ -336,8 +481,10 @@ private:
 
     }
 
-    //Prints tree in sorted order
-    //curr: root node
+    /**
+     * Function to print tree in sorted-order
+     * @param curr - root of the tree
+     */
     void print(Node<T> *curr){
 
         //While empty leaf is not reached
@@ -351,9 +498,11 @@ private:
 
     }
 
-    //Insert method to add new node to tree
-    //root: reference to root node
-    //data: data to be inserted
+    /**
+     * Function to insert data in the tree
+     * @param root - root of the tree
+     * @param data - data to be inserted
+     */
     void insert(Node<T> *& root, T data){
 
         //If this is first node

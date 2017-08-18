@@ -1,6 +1,7 @@
 #include <iostream>
 #include <stdio.h>
 #include "Bst.h"
+#include <queue>
 
 using namespace std;
 
@@ -13,12 +14,19 @@ int main() {
     bst->insert(9);
     bst->insert(5);
     bst->insert(2);
+    bst->insert(16);
 
-    bst->insertWithoutRecursion(16);
-    bool found = bst->searchWithoutRecursion(8);
-    cout <<"found 8?: " << found << endl;
+    //cout << "min is: " << bst->findMin() << endl;
+    //cout << "max is: " << bst->findMax() << endl;
+    //cout << "height is: " << bst->findHeight() << endl;
 
-    //bst->print();
+    bst->breadthFirstTraversal();
+
+    /*bool found = bst->searchWithoutRecursion(8);
+    cout <<"found 8?: " << found << endl;*/
+
+    /*
+    bst->print();
     cout << "Pre order: " << endl;
     bst->printPreOrder();
     cout << endl;
@@ -31,11 +39,8 @@ int main() {
     bst->printPostOrder();
     cout << endl;
 
-    cout << "min is: " << bst->findMin() << endl;
-    cout << "max is: " << bst->findMax() << endl;
-
-    cout << “Height is: “ << bst->findHeight() << endl;
-
+    //cout << "Is 10 in the tree?: " << bst->search(10) << endl;
+    //cout << "Is 14 in the tree?: " << bst->searchWithoutRecursion(14) << endl;*/
 
     return 0;
 }
