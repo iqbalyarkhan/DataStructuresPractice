@@ -37,6 +37,19 @@ public:
 
     }
 
+    
+    /**
+     * Helper function to check whether given tree
+     * is a BST
+     * @return true if tree is a BST
+     */
+    bool isBinarySearchTree(){
+
+        bool isBinary = isBinarySearchTree(root);
+        return isBinary;
+
+    }
+
 
     /**
      * Helper function that calls private function
@@ -185,7 +198,33 @@ private:
     Node<T> *root;
 
     /**
-     * Traverses the in breadthFirst fashion,
+    * Function to find whether a tree is a BST
+    * @param root - root of the tree and subsequent subtrees
+    * @return true if tree is a BST, false otherwise
+    */
+    bool isBinarySearchTree(Node<T>* root)
+    {
+        // Base case
+        if (root == nullptr)
+            return true;
+
+        // if left node exists check if
+        // data in left node < root data
+        if (root->leftChild != nullptr && root->data < root->leftChild->data)
+            return false;
+
+        // if right node exists check if
+        // data in right node > root data
+        if (root->rightChild != nullptr && root->data > root->rightChild->data)
+            return false;
+
+        // checking recursively for each subsequent node.
+        return isBinarySearchTree(root->leftChild) &&
+               isBinarySearchTree(root->rightChild);
+    }
+
+    /**
+     * Traverses the tree in breadthFirst fashion,
      * printing out the values
      * @param root of the tree
      */
