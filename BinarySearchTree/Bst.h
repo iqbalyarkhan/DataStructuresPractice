@@ -37,6 +37,16 @@ public:
 
     }
 
+     /**
+     * Helper function to delete a node from the tree
+     * @param data - node to delete that holds data
+     */
+    void deleteNode(T data){
+
+        deleteNode(root, data);
+
+    }
+
     
     /**
      * Helper function to check whether given tree
@@ -196,6 +206,155 @@ private:
 
     //root to hold entry point for the tree
     Node<T> *root;
+
+
+/**
+     * Function to delete a node from the tree
+     * @param curr - root node of the tree
+     * @param data - data to be deleted
+     * @return - true if node deleted from tree, false otherwise
+     */
+    void deleteNode(Node<T>* curr, T data){
+
+        bool left = false;
+        bool right = false;
+
+        Node<T> *prev = curr;
+
+        //Node to be deleted is in the left subtree
+        if (data < curr->data){
+
+            curr = curr->leftChild;
+            left = true;
+        }
+
+        //Node to be deleted is in the right subtree
+        else if (data > curr->data) {
+
+            curr = curr->rightChild;
+            right = true;
+        }
+
+        //Node to be deleted is the root node
+        else {
+
+            //TODO!
+
+        }
+
+        while (curr != nullptr){
+
+            if (data < curr->data){
+
+                prev = curr;
+                curr = curr->leftChild;
+                left = true;
+                right = false;
+
+            }
+
+            else if (data > curr->data){
+
+                prev = curr;
+                curr = curr->rightChild;
+                right = true;
+                left = false;
+
+            }
+
+            //Node to be deleted is found and is being pointed to by curr
+            else {
+
+                //If curr is right child of prev
+                if (right){
+
+                    //And curr is a leaf node
+                    if (curr->leftChild == nullptr && curr->rightChild == nullptr){
+
+                        delete curr;
+                        curr = nullptr;
+                        prev->rightChild = nullptr;
+                    }
+
+                    //Node to be deleted has a right child
+                    else if (curr->rightChild != nullptr && curr->leftChild == nullptr){
+
+                        prev->rightChild = curr->rightChild;
+                        delete curr;
+                        curr = nullptr;
+
+                    }
+
+                    //Node to be deleted has a left child
+                    else if (curr->leftChild != nullptr && curr->rightChild == nullptr){
+
+                        prev->rightChild = curr->leftChild;
+                        delete curr;
+                        curr = nullptr;
+
+                    }
+
+                    //Node to be deleted has both a left and a right child
+                    else{
+
+                        prev->rightChild = curr->rightChild;
+                        prev->rightChild->leftChild = curr->leftChild;
+                        delete curr;
+                        curr = nullptr;
+
+                    }
+
+                }
+
+                //If curr is left chlid of prev
+                if (left){
+
+                    //And curr is a leaf node
+                    if (curr->leftChild == nullptr && curr->rightChild == nullptr){
+
+                        delete curr;
+                        curr = nullptr;
+                        prev->leftChild = nullptr;
+                    }
+
+                        //Node to be deleted has a right child
+                    else if (curr->rightChild != nullptr && curr->leftChild == nullptr){
+
+                        prev->leftChild = curr->rightChild;
+                        delete curr;
+                        curr = nullptr;
+
+                    }
+                    //Node to be deleted has a left child
+                    else if (curr->leftChild != nullptr && curr->rightChild == nullptr){
+
+                        prev->leftChild = curr->leftChild;
+                        delete curr;
+                        curr = nullptr;
+
+                    }
+
+                    //Node to be deleted has both a left and a right child
+                    else {
+
+                        prev->leftChild = curr->rightChild;
+                        prev->leftChild->leftChild = curr->leftChild;
+                        delete curr;
+                        curr = nullptr;
+
+                    }
+
+                }
+
+            }
+
+
+
+        }
+
+    }
+
+
 
     /**
     * Function to find whether a tree is a BST
