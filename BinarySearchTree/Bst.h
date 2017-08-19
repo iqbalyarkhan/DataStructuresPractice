@@ -238,7 +238,21 @@ private:
         //Node to be deleted is the root node
         else {
 
-            //TODO!
+            //Go into the right subtree and find
+            //the smallest element to make it the root.
+            curr = curr->rightChild;
+            while (curr->leftChild != nullptr){
+
+                prev = curr;
+                curr = curr->leftChild;
+
+            }
+
+            T newRootData = curr->data;
+            delete curr;
+            curr = nullptr;
+            prev->leftChild = nullptr;
+            root->data = newRootData;
 
         }
 
