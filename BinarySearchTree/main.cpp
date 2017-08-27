@@ -41,6 +41,6 @@ int main() {
 
     //cout << "Is 10 in the tree?: " << bst->search(10) << endl;
     //cout << "Is 14 in the tree?: " << bst->searchWithoutRecursion(14) << endl;*/
-
+    delete bst;
     return 0;
 }
