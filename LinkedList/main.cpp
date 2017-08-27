@@ -19,6 +19,8 @@ int main() {
     l->removeDuplicates();
     cout << "After deletion of duplicates: " << endl;
     l->display();
-
+    
+    delete l;
+    
     return 0;
 }
