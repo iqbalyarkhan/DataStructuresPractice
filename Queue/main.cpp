@@ -30,6 +30,8 @@ int main() {
     q->print();
 
     cout <<"Peeking at the front of queue: " << q->peek() << endl;
-
+   
+    delete q;   
+ 
     return 0;
 }
