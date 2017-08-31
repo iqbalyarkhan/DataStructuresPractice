@@ -21,7 +21,6 @@ public:
     void initializeVertexList();
     void printVertexInfo();
 
-
 private:
 
     struct Node{
@@ -35,6 +34,14 @@ private:
     int numberOfVertices;
     Node* head;
 };
+
+/**
+ * Constructor for graph that initializes
+ * number of vertices and pointers
+ * @tparam T - Graph that holds data of type T
+ * @param num - number of vertices that the graph will hold
+ */
+
 template <typename T>
 Graph<T>::Graph(int num): numberOfVertices(num), head(nullptr) {
 
