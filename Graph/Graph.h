@@ -22,9 +22,6 @@ public:
     void printVertexInfo();
 
 
-
-
-
 private:
 
     struct Node{
