@@ -328,9 +328,6 @@ void List<T>::deleteFirstNode(){
 
     }
 
-
-
-
 }
 
 /**
@@ -438,8 +435,6 @@ List<T>::~List() {
         temp = temp->next;
         cout << "Deleting: " << prev->data << " ";
         delete prev;
-
-
 
     }
 
