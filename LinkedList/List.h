@@ -19,6 +19,7 @@ class List {
 
 public:
     List();
+    ~List();
     void insertAtEnd(T d);
     void insertAtStart(T d);
     void insertAtPosition(int n, T data);
@@ -337,6 +338,15 @@ List<T>::List(){
 }
 
 template <typename T>
+List<T>::~List() {
+
+    delete tail;
+    delete head;
+
+
+}
+
+template <typename T>
 int List<T>::count(){
     return size;
 }
@@ -364,6 +374,8 @@ void List<T>::insertAtStart(T d) {
         size++;
 
     }
+
+    delete A;
 
 }
 
