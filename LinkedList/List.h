@@ -31,7 +31,7 @@ public:
     T returnTailData();
     bool isPalindrome();
     void detectCircularPoint();
-    T getKElementFromEnd(int );
+    T getKElementFromEnd(int k);
     void removeDuplicates();
 
 
@@ -46,13 +46,16 @@ private:
     int size;
 };
 
-///Function to return whether a list is a palindrome
-
+/**
+ * Function to determine whether a list is a palindrome.
+ * @return - Boolean to indicate whether the list is a palindrome.
+ */
 template <typename T>
 bool List<T>::isPalindrome() {
 
     bool isPalindrome = true;
     stack<T> myStack;
+    Node *curr;
     //To check the size of the list
     int remainder = size % 2;
 
@@ -63,7 +66,7 @@ bool List<T>::isPalindrome() {
 
     else{
         //Starting at head
-        Node *curr = head;
+        curr = head;
 
         //Push half the list on to the stack
         for (int i = 0 ; i < (size/2); ++i){
@@ -228,8 +231,13 @@ void List<T>::insertAtPosition(int n, T data) {
         size++;
 
     }
+
 }
 
+/**
+ * Function to delete a node at a specified position
+ * @param n - The position at which the node is to be deleted
+ */
 
 template <typename T>
 void List<T>::deleteAtPosition(int n) {
@@ -265,6 +273,10 @@ void List<T>::deleteAtPosition(int n) {
 
 }
 
+/**
+ * Function to delete the last (tail) node
+ */
+
 template <typename T>
 void List<T>::deleteLastNode(){
 
@@ -290,6 +302,10 @@ void List<T>::deleteLastNode(){
     }
 
 }
+
+/**
+ * Function to delete the first (head) node.
+ */
 
 template <typename T>
 void List<T>::deleteFirstNode(){
@@ -317,6 +333,11 @@ void List<T>::deleteFirstNode(){
 
 }
 
+/**
+ * Function to insert data at the end of the list.
+ * @param d - data for new node.
+ */
+
 template <typename T>
 void List<T>::insertAtEnd(T d) {
 
@@ -329,6 +350,9 @@ void List<T>::insertAtEnd(T d) {
 
 }
 
+/**
+ * Constructor
+ */
 
 template <typename T>
 List<T>::List(){
@@ -337,19 +361,20 @@ List<T>::List(){
     size = 0;
 }
 
-template <typename T>
-List<T>::~List() {
-
-    delete tail;
-    delete head;
-
-
-}
+/**
+ * Returns the count of nodes present
+ * @return - current number of elements of the list
+ */
 
 template <typename T>
 int List<T>::count(){
     return size;
 }
+
+/**
+ * Function to insert new node with data d at start of list
+ * @param d - data to be inserted
+ */
 
 template <typename T>
 void List<T>::insertAtStart(T d) {
@@ -362,7 +387,6 @@ void List<T>::insertAtStart(T d) {
         tail = A;
         A->next = nullptr;
         size++;
-
     }
 
     else{
@@ -372,13 +396,13 @@ void List<T>::insertAtStart(T d) {
         temp->next = head;
         head = temp;
         size++;
-
     }
-
-    delete A;
 
 }
 
+/**
+ * Prints contents of each node of the list.
+ */
 template <typename T>
 void List<T>::display() {
 
@@ -390,10 +414,34 @@ void List<T>::display() {
 
 }
 
+/**
+ * Function to return data present in tail
+ * @return - data present in tail
+ */
 template<typename T>
 T List<T>::returnTailData() {
 
     return tail->data;
+
+}
+
+/**
+ * Destructor that frees up memory by deleting the list
+ */
+template <typename T>
+List<T>::~List() {
+
+    Node *temp = head;
+    while (temp != nullptr){
+
+        Node *prev = temp;
+        temp = temp->next;
+        cout << "Deleting: " << prev->data << " ";
+        delete prev;
+
+
+
+    }
 
 }
 
