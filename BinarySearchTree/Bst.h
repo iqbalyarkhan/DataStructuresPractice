@@ -202,6 +202,17 @@ public:
         printPostOrder(root);
     }
 
+    /**
+     * Destructor to deallocate memory
+     * Uses post-order traversal to delete nodes
+     * using helper function deletePostOrder
+     */
+    ~Bst(){
+
+        deletePostOrder(root);
+
+    }
+
 private:
 
     //root to hold entry point for the tree
@@ -739,6 +750,25 @@ private:
 
             //Duplicate, do nothing
         else{}
+
+    }
+
+
+    /**
+    * Deletes the tree to free up memory
+    * @param curr - Root for the tree
+    */
+    void deletePostOrder(Node<T> *curr){
+
+        if (curr == nullptr){
+            return;
+        }
+
+        deletePostOrder(curr->leftChild);
+        deletePostOrder(curr->rightChild);
+        cout << endl;
+        cout << "Deleting: " << curr->data << endl;
+        delete curr;
 
     }
 
