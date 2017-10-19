@@ -1,16 +1,11 @@
 //
-<<<<<<< HEAD
-// Created by Iqbal Khan on 8/13/17.
-=======
 // Created by Iqbal Khan on 8/14/17.
->>>>>>> stack
 //
 
 #ifndef STACKCLASS_STACK_H
 #define STACKCLASS_STACK_H
 
 #include <iostream>
-#include <stdio.h>
 #include <string>
 
 using namespace std;
@@ -19,17 +14,16 @@ template <typename T>
 class Stack {
 public:
     Stack();
+    ~Stack();
     void push(T data);
     T pop();
     T peek();
     bool isEmpty();
     int count();
     void print();
-<<<<<<< HEAD
-=======
     T getMin();
     void setMin(T data);
->>>>>>> stack
+
 
 private:
     struct Node{
@@ -39,13 +33,13 @@ private:
 
     Node *head;
     int size;
-<<<<<<< HEAD
-=======
     int min;
->>>>>>> stack
 
 };
 
+/**
+ * Function to print elements of stack starting from head
+ */
 template <typename T>
 void Stack<T>::print() {
     Node *curr = head;
@@ -58,9 +52,11 @@ void Stack<T>::print() {
 
 }
 
+/**
+ * Function to set the minimum value of the stack
+ * @param data - data to be set as minimum
+ */
 template <typename T>
-<<<<<<< HEAD
-=======
 void Stack<T>::setMin(T data) {
 
     if (data < min){
@@ -69,18 +65,29 @@ void Stack<T>::setMin(T data) {
 
 }
 
+/**
+ * Function to get the minimum value from stack
+ * @return T - the minimum value on stack
+ */
 template <typename T>
 T Stack<T>::getMin() {
 
     return min;
 }
 
+/**
+ * To keep track of size of stack
+ * @return - the size of stack
+ */
 template <typename T>
->>>>>>> stack
 int Stack<T>::count() {
     return size;
 }
 
+/**
+ * To check whether stack is empty
+ * @return - True if stack is empty, else false
+ */
 template <typename T>
 bool Stack<T>::isEmpty() {
     if (size == 0){
@@ -92,11 +99,19 @@ bool Stack<T>::isEmpty() {
     }
 }
 
+/**
+ * To check the value on top of stack
+ * @return - Returns the peeked value
+ */
 template <typename T>
 T Stack<T>::peek() {
     return head->data;
 }
 
+/**
+ * To pop a value from top of stack
+ * @return - Popped the value from top of stack
+ */
 template <typename T>
 T Stack<T>::pop() {
     if (size <= 0){
@@ -115,26 +130,25 @@ T Stack<T>::pop() {
 
 }
 
+/**
+ * Function to push items on stack
+ * @param data: Item pushed on stack
+ */
 template <typename T>
 void Stack<T>::push(T data) {
 
     Node *temp = new Node;
     temp->data = data;
     if (size == 0){
-<<<<<<< HEAD
-=======
         min = data;
->>>>>>> stack
         temp->next = nullptr;
         head = temp;
+
     }
 
     else{
 
-<<<<<<< HEAD
-=======
         setMin(data);
->>>>>>> stack
         temp->next = head;
         head = temp;
     }
@@ -143,13 +157,27 @@ void Stack<T>::push(T data) {
 
 }
 
-
+/**
+ * Constructor
+ */
 template <typename T>
 Stack<T>::Stack(){
 
     head = nullptr;
     size = 0;
+}
 
+
+/**
+ * Destructor
+ */
+template <typename T>
+Stack<T>::~Stack() {
+
+    while (head != nullptr){
+        pop();
+
+    }
 }
 
 #endif //STACKCLASS_STACK_H
