@@ -16,14 +16,7 @@ int main() {
     s->push(0);
     s->push(5);
     s->print();
-    cout << "Peeking: " << s->peek() << endl;
-    cout << "Pop: " << s->pop() << endl;
-    cout << "Pop: " << s->pop() << endl;
-    cout << "Pop: " << s->pop() << endl;
-    cout << "Pop: " << s->pop() << endl;
-    cout << "Pop: " << s->pop() << endl;
-    cout << "Pop: " << s->pop() << endl;
-
+    
     delete s;
 
     return 0;
